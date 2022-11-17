@@ -42,6 +42,8 @@ function signUpUser(userName, userEmail, userPassword, callback) {
 						  new AmazonCognitoIdentity.CognitoUserAttribute(dataName) ];
 	  
 	let userPool = getUserPool();
+	var encodedData = AmazonCognitoAdvancedSecurityData.getData(userName, getPoolData().UserPoolId, getPoolData().ClientId);
+	console.log(encodedData)
 	userPool.signUp(userName, userPassword, attributeList, null, function(err, result){
 	    if (err) {
 	    	callback(err, null);
